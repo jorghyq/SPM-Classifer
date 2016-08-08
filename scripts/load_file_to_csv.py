@@ -6,6 +6,7 @@ import csv
 start_dir = '/home/jorghyq/Data'
 
 files = []
+dir_to_exclude = []
 dir_to_complete = [start_dir]
 
 #for root, dirs, files in os.walk('/home/jorghyq/Downloads'):
