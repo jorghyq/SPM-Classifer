@@ -20,32 +20,43 @@ import csv
 from nanonisdatfile import NanonisDat
 from nanonisfile import NanonisFile
 
-pre_dir = '.'
+type_dict = {'txt': 1, 'sxm': 2, 'dat': 3, '3ds': 4}
 
-def preparser(file_name):
-    path, name = os.path.split(file_name)
-    ending = name.split('.')[-1]
-    print path, name, ending
-    if ending == 'sxm':
-        file_type = 2
+class FileParser:
+    # parser for files
+
+    def __init__(self):
+        self.file_type = 0
+        self.format_type = 0
+
+    def load_file(self, path):
+        self.full_path = path
+        self.path, self.name= os.path.split(self.full_path)
+        print self.path, self.name
+
+    def parsing(self):
+        ending = self.name.split('.')[-1]
+        # determine the file_type
+        if ending in type_dict.keys():
+            self.file_type = type_dict[ending]
+        # determine the format_type
         try:
-            file_sxm = NanonisFile(file_name)
+            file_sxm = NanonisFile(self.full_path)
             # check if the feedback on
+
             # check if it complete
             # check the size and if square
             #
 
-
-
-
-
-    return file_type,file_format,file_finished,file_pixel
+        return self.file_type#,file_format,file_finished,file_pixel
 
 
 
 if __name__ == "__main__":
-    files = os.listdir('../test/')
+    files = os.listdir('/home/jorghyq/Data/201501')
+    parser = FileParser()
     for item in files:
-        print item
-        preparser(item)
+        #print item
+        parser.load_file(item)
+        print parser.parsing()
 
