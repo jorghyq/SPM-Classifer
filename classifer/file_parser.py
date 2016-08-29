@@ -6,12 +6,12 @@
 #               3     dat                  #
 #               4     3ds                  #
 ############################################
-# file_format:  0     STM
-#               1     AFM
-#               2     dI/dV map
-#               3     dI/dV
-#               4     Force curve
-###########################################
+# file_format:  0     STM                  #
+#               1     AFM                  #
+#               2     dI/dV map            #
+#               3     dI/dV                #
+#               4     Force curve          #
+############################################
 
 
 import numpy as np
@@ -32,6 +32,7 @@ class FileParser:
     def load_file(self, path):
         self.full_path = path
         self.path, self.name= os.path.split(self.full_path)
+        print self.full_path
         print self.path, self.name
 
     def parsing(self):
@@ -41,22 +42,27 @@ class FileParser:
             self.file_type = type_dict[ending]
         # determine the format_type
         try:
-            file_sxm = NanonisFile(self.full_path)
-            # check if the feedback on
-
-            # check if it complete
-            # check the size and if square
-            #
-
-        return self.file_type#,file_format,file_finished,file_pixel
+            if ending == 'sxm':
+                file_sxm = NanonisFile(self.full_path)
+                # check if the feedback on
+                # check if it complete
+                # check the size and if square
+                #
+            elif ending == 'dat':
+                file_dat = NanonisDat(self.full_path)
+        except IOError as e:
+            print "I/O error({0}): {1}".format(e.errno, e.strerror)
+            pass
+        return self.file_type #,file_format,file_finished,file_pixel
 
 
 
 if __name__ == "__main__":
-    files = os.listdir('/home/jorghyq/Data/201501')
+    fdir = '/home/jorghyq/Data/201511/'
+    files = os.listdir(fdir)
     parser = FileParser()
     for item in files:
         #print item
-        parser.load_file(item)
+        parser.load_file(fdir+item)
         print parser.parsing()
 

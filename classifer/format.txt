@@ -1,0 +1,39 @@
+Entries:
+filename
+file_type
+file_format
+pixel
+finished
+quality
+type
+
+filename: realtive to the parent folder
+
+file_type:  0    others
+            1    txt
+            2    sxm
+            3    dat
+            4    3ds
+
+file_format:  0    STM
+              1    AFM
+              2    dI/dV map
+              3    dI/dV
+              4    Force Curve
+
+pixel: only accept square image
+
+finished:
+
+quality:  0:    really bad, almost no meaningful features
+          1:    bad, blurry, multiple tip
+          2:    normal, single or double tip
+          3:    normal, good and bad mixed
+          3:    good, single tip
+          4:    very good, almost all features visible
+
+type:    0:    metal or graphene>95%
+         1:    metal, and bad areas
+         2:    metal>80%, molecule spreaded over the surface
+         3:    molecular islands
+         4:    molecular structure
