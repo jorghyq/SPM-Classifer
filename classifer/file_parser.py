@@ -107,15 +107,23 @@ class Controller():
 
     def __init__(self):
        self.parser = FileParser()
+       self.columns = ['filename','filetype','fileformat','pixel1','pixel2',\
+                      'size1','size2','ratio','finished','quality','type']
+       self.count = 0
 
     def init_table(self):
-        pass
+        # initialize with
+        self.table = pd.DataFrame(columns=self.columns)
 
     def load_table(self):
         pass
 
-    def update_table(self):
+    def update_entry(self,row,column):
         pass
+
+    def update_row(self,row):
+        pass
+
 
 
 if __name__ == "__main__":
